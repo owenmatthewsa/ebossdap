@@ -72,7 +72,11 @@ eBOSS-DAP.py Bin_001 high high
 
 # File Guide
 bin_001: a directory containing two sample plates for testing.
+
 eBOSSDAP: a directory containing all spectral templates as well as emission line and spectral index definition files.
+
 fits: a directory containing the fits found by the eBOSS-DAP for the files in bin_001.
+
 eBOSS-DAP.py: the main executable file for the eBOSS-DAP.
+
 eBOSS-DAP-Fit-Plotter.ipynb: a Jupyter notebook meant to plot the results of the eBOSS-DAP overlayed on the initial spectrum.
