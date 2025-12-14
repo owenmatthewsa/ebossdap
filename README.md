@@ -9,7 +9,7 @@ following paper:
  - Matthews Acuña et al. (In prep)
  
 
-##Requirements:
+## Requirements:
 This project depends on the following Python packages:
 
 
@@ -72,7 +72,7 @@ Redshift-Selection is either 'high' or 'low' which determines whether or not the
 For Example
 eBOSS-DAP.py Bin_001 high high
 
-# File Guide
+## File Guide
 bin_001: a directory containing two sample plates for testing.
 
 eBOSSDAP: a directory containing all spectral templates as well as emission line and spectral index definition files.
