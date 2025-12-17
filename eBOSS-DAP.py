@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Imports
 import sys
 from pathlib import Path
@@ -1998,5 +1997,3 @@ with open('fits/'+d+'_plate_failed.txt','a') as f2:
             print(traceback.format_exc())
             f2.write(plate + ' FAILED: '+str(e)+' \n')
             print('FAILED')
->>>>>>> temp-merge
-        #'''
