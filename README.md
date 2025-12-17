@@ -42,19 +42,24 @@ First, all spectra must be contained in a subdirectory of the directory where th
 
 The eBOSS-DAP expects spectra to be eBOSS spectra and, as such, have the naming scheme spec-PLATE-MJD-FIBER.fits 
 For example spec-3650-55244-0067 where:
+
 PLATE = 3650
+
 MJD = 55244
+
 FIBER = 0067
 
 It then expects all spectra to be within subdirectories named the PLATE.
 
 Additionally, it expects all spectra to have a premade galactic extinction helper CSV file named ebv-PLATE-MJD-FIBER.csv
 with the following structure:
+
 ebv,ra,dec,tag,z
 
 ##,##,##,PLATE-MJD-FIBER,#
 
 For example:
+
 ebv,ra,dec,tag,z
 
 0.0254465521499514,39.997546,-0.000498,3650-55244-0067,0.48071203
