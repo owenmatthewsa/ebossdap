@@ -15,11 +15,17 @@ This project depends on the following Python packages:
 
 
 numpy >= 1.26.4
+
 pandas >= 2.0
+
 astropy >= 6.0
+
 ipython >= 8.0
+
 mangadap >= 3.4
+
 dust_extinction >= 1.0
+
 dustmaps >= 1.0
 
 You can install them with:
