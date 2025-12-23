@@ -1,12 +1,15 @@
 # The eBOSS - Data Analysis Pipeline
 The eBOSS Data Analysis Pipeline (eBOSS-DAP) is a wrapper for the MaNGA - data-analysis pipeline (MaNGA DAP), which is set up to analyze eBOSS spectra.
 
+Download the output catalogs here: https://datalab.noirlab.edu/data/sdss#sdss-iv-eboss-dap-value-added-catalog
+
 ## Citation
 
 If you use the DAP software and/or its output products, please cite the
 following paper:
 
  - Matthews Acuña et al. 2025
+  
  - https://ui.adsabs.harvard.edu/abs/2025arXiv251218076M/exportcitation
  
 
