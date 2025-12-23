@@ -1,5 +1,5 @@
 # The eBOSS - Data Analysis Pipeline
-The eBOSS Data Analysis Pipeline (eBOSS-DAP) is a wrapper for the MaNGA - data-analysis pipeline (MaNGA DAP), which is set up to analyze eBOSS spectra.
+The eBOSS Data Analysis Pipeline (eBOSS-DAP) is a wrapper for the MaNGA - Data Analysis Pipeline (MaNGA DAP), which is set up to analyze eBOSS spectra.
 
 Download the output catalogs here: https://datalab.noirlab.edu/data/sdss#sdss-iv-eboss-dap-value-added-catalog
 
@@ -86,21 +86,24 @@ The call should have the form eBOSS-DAP.py Bin-name EW-Selection Redshift-Select
 
 Where Bin-Name is the name of the folder containing the desired plates,
 
-EW-Selection is either 'high' or 'low' which determines whether or not the full or reduced line list is used respectively.
+EW-Selection is either 'high' or 'low', which determines whether or not the full or reduced line list is used, respectively.
 
-Redshift-Selection is either 'high' or 'low' which determines whether or not the lines are tied to H-Beta or H-alpha respectively.
+Redshift-Selection is either 'high' or 'low', which determines whether or not the lines are tied to H-Beta or H-alpha, respectively.
 
 For Example
 
 eBOSS-DAP.py Bin_001 high high
 
 ## File Guide
-bin_001: a directory containing two sample plates for testing.
+bin_001: A directory containing two sample plates for testing.
 
-eBOSSDAP: a directory containing all spectral templates as well as emission line and spectral index definition files.
+eBOSSDAP: A directory containing all spectral templates as well as emission line and spectral index definition files.
 
-fits: a directory containing the fits found by the eBOSS-DAP for the files in bin_001.
+fits: A directory containing the fits found by the eBOSS-DAP for the files in bin_001.
 
-eBOSS-DAP.py: the main executable file for the eBOSS-DAP.
+eBOSS-DAP.py: The main executable file for the eBOSS-DAP.
 
-eBOSS-DAP-Fit-Plotter.ipynb: a Jupyter notebook meant to plot the results of the eBOSS-DAP overlayed on the initial spectrum.
+eBOSS-DAP-Fit-Plotter.ipynb: A Jupyter notebook meant to plot the results of the eBOSS-DAP overlayed on the initial spectrum.
+
+eBOSS-DAP_BPT_Maker.ipynb: Creates a PDF of the Baldwin, Phillips, and Terlevich (BPT) diagram (J. A. Baldwin et al. 1981) using the updated classification lines from D. R. Law et al.
+(2021c) for the eBOSS-DAP Catalog
