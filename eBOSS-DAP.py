@@ -719,7 +719,7 @@ def main(initdir,plate,el_ew,el_z):
     # Find all emission lines that are more than 50% masked and flag them as unfit.
     # The user can modify this masked threshold by modifying the masked_eml_percent varible 
 
-    the masked_eml_percent = 0.5
+    masked_eml_percent = 0.5
     for i,tag in enumerate(tags):
         for j in range(len(emldb)):
             wavemin = emldb['blueside'][j][1]
