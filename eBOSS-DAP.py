@@ -729,11 +729,11 @@ def main(initdir,plate,el_ew,el_z):
             masklet = np.where(eml_mask[i]!=0,1,0)
             fluxlet = flux[i]
             index = (wavelet>wavemin) & (wavelet<wavemax)
-            if np.sum((index & fluxlet.mask) | (index & masklet))/np.sum(index) > the masked_eml_percent:
+            if np.sum((index & fluxlet.mask) | (index & masklet))/np.sum(index) > masked_eml_percent:
                 eml_eml_par['FLUX'][i][j] = -999.0
                 eml_eml_par['FLUXERR'][i][j] = -999.0
             if use_datamask:
-                if np.sum(index & data_masklet)/np.sum(index) > the masked_eml_percent:
+                if np.sum(index & data_masklet)/np.sum(index) > masked_eml_percent:
                     eml_eml_par['FLUX'][i][j] = -999.0
                     eml_eml_par['FLUXERR'][i][j] = -999.0
             
@@ -1719,7 +1719,7 @@ def main(initdir,plate,el_ew,el_z):
     # Find all emission lines that are more than 50% masked and flag them as unfit.
     # The user can modify this masked threshold by modifying the masked_eml_percent varible 
 
-    the masked_eml_percent = 0.5
+    masked_eml_percent = 0.5
     for i,tag in enumerate(tags):
         for j in range(len(emldb)):
             wavemin = emldb['blueside'][j][1]
@@ -1729,11 +1729,11 @@ def main(initdir,plate,el_ew,el_z):
             masklet = np.where(eml_mask[i]!=0,1,0)
             fluxlet = flux[i]
             index = (wavelet>wavemin) & (wavelet<wavemax)
-            if np.sum((index & fluxlet.mask) | (index & masklet))/np.sum(index) > the masked_eml_percent:
+            if np.sum((index & fluxlet.mask) | (index & masklet))/np.sum(index) > masked_eml_percent:
                 eml_eml_par['FLUX'][i][j] = -999.0
                 eml_eml_par['FLUXERR'][i][j] = -999.0
             if use_datamask:
-                if np.sum(index & data_masklet)/np.sum(index) > the masked_eml_percent:
+                if np.sum(index & data_masklet)/np.sum(index) > masked_eml_percent:
                     eml_eml_par['FLUX'][i][j] = -999.0
                     eml_eml_par['FLUXERR'][i][j] = -999.0
             
