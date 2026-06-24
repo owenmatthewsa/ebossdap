@@ -623,14 +623,25 @@ def main(initdir,plate,el_ew,el_z):
     efit_t = time.perf_counter()
 
 
-    eml_wave, model_flux, eml_flux, eml_mask, eml_fit_par, eml_eml_par \
-            = emlfit.fit(emldb, wave, flux, obj_ferr=ferr, obj_mask=el_pixel_mask, obj_sres=sres,
-                         guess_redshift=z, guess_dispersion=dispersion, reject_boxcar=101,
-                         stpl_wave=el_tpl['WAVE'].data, stpl_flux=el_tpl['FLUX'].data,
-                         stpl_sres=el_tpl_sres, stellar_kinematics=stellar_kinematics,
-                         etpl_sinst_mode='offset', etpl_sinst_min=10.,
-                         velscale_ratio=el_velscale_ratio, mdegree=8,  degree=-1,
-                         plot=fit_plots,ensemble=False,sigma_rej=5)
+    if el_ew == 'high':
+        eml_wave, model_flux, eml_flux, eml_mask, eml_fit_par, eml_eml_par \
+                = emlfit.fit(emldb, wave, flux, obj_ferr=ferr, obj_mask=el_pixel_mask, obj_sres=sres,
+                             guess_redshift=z, guess_dispersion=dispersion, reject_boxcar=101,
+                             stpl_wave=el_tpl['WAVE'].data, stpl_flux=el_tpl['FLUX'].data,
+                             stpl_sres=el_tpl_sres, stellar_kinematics=stellar_kinematics,
+                             etpl_sinst_mode='offset', etpl_sinst_min=10.,
+                             velscale_ratio=el_velscale_ratio, mdegree=8, degree=-1,
+                             plot=fit_plots, ensemble=False, sigma_rej=5,
+                             stellar_tied=['free', 'free'])
+    else:
+        eml_wave, model_flux, eml_flux, eml_mask, eml_fit_par, eml_eml_par \
+                = emlfit.fit(emldb, wave, flux, obj_ferr=ferr, obj_mask=el_pixel_mask, obj_sres=sres,
+                             guess_redshift=z, guess_dispersion=dispersion, reject_boxcar=101,
+                             stpl_wave=el_tpl['WAVE'].data, stpl_flux=el_tpl['FLUX'].data,
+                             stpl_sres=el_tpl_sres, stellar_kinematics=stellar_kinematics,
+                             etpl_sinst_mode='offset', etpl_sinst_min=10.,
+                             velscale_ratio=el_velscale_ratio, mdegree=8, degree=-1,
+                             plot=fit_plots, ensemble=False, sigma_rej=5)
     print('TIME: ', time.perf_counter() - efit_t)
 
     # Line-fit metrics
@@ -866,6 +877,24 @@ def main(initdir,plate,el_ew,el_z):
             elif sc_vel_err == -999.0:
                 sc_sig_err = -999.0
 
+            # For highew runs, save simultaneous stellar kinematics from
+            # eml_fit_par['KIN'] (first 2 entries) to new header keys.
+            # These live alongside the ppxf values rather than replacing them.
+            free_sc_vel = -999.0
+            free_sc_sig = -999.0
+            free_sc_vel_err = -999.0
+            free_sc_sig_err = -999.0
+            if el_ew == 'high':
+                try:
+                    sim_kin     = eml_fit_par['KIN'][i]
+                    sim_kinerr  = eml_fit_par['KINERR'][i]
+                    free_sc_vel     = sim_kin[0]
+                    free_sc_sig     = sim_kin[1]
+                    free_sc_vel_err = sim_kinerr[0]
+                    free_sc_sig_err = sim_kinerr[1]
+                except Exception:
+                    pass
+
             sc_corr = cont_par['SIGMACORR_SRES'][i]
 
             fluxlet = flux[i]
@@ -938,6 +967,11 @@ def main(initdir,plate,el_ew,el_z):
             hdr['sc_velocity_err'] = np.round(sc_vel_err,decimals=3)
             hdr['sc_dispersion_err'] = np.round(sc_sig_err,decimals=3)
             hdr['sc_correction'] = np.round(sc_corr,decimals=3)
+            if el_ew == 'high':
+                hdr['free_sc_vel'] = np.round(free_sc_vel,decimals=3)
+                hdr['free_sc_disp'] = np.round(free_sc_sig,decimals=3)
+                hdr['free_sc_vel_err'] = np.round(free_sc_vel_err,decimals=3)
+                hdr['free_sc_disp_err'] = np.round(free_sc_sig_err,decimals=3)
             try:
                 hdr['SNR_median'] = np.round(snr,decimals=3)
             except:
